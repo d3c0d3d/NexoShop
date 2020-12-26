@@ -1,0 +1,60 @@
+﻿@model IEnumerable<NexoShop.Models.Produto>
+
+@{
+    ViewBag.Title = "Produtos";
+}
+
+<h2>Produtos</h2>
+
+<p>
+    @Html.ActionLink("Criar", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Produtos", FormMethod.Post))
+{
+    <input type="text" name="term" />
+    <input type="submit" value="Pesquisar" text="Pesquisar" />
+}
+<br/>
+<table class="table">
+    <tr>
+        <th>
+            Cliente
+            @*@Html.DisplayNameFor(model => model.ClienteKey.Nome)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disponivel)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteKey.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disponivel)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ProdutoId }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ProdutoId }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.ProdutoId })
+            </td>
+        </tr>
+    }
+
+</table>
